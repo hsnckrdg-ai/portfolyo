@@ -100,6 +100,7 @@ const translations = {
       desc: "You can always reach out to me for internship opportunities, project ideas, or just to chat about technology.", 
       emailBtn: "Send Email", 
       rights: "All rights reserved." 
+      
     }
   }
 };
