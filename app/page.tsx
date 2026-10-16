@@ -109,7 +109,6 @@ const translations = {
     }
   ]
 },
-    },
     contact: { 
       title: "Contact Me", 
       desc: "You can always reach out to me for internship opportunities, project ideas, or just to chat about technology.", 
@@ -288,7 +287,7 @@ export default function Home() {
           </div>
         </section>
 
-      {/* 4. Projeler */}
+ {/* 4. Projeler */}
 <section id="projeler" className="max-w-4xl mx-auto px-6 py-20">
   <div className="flex items-center gap-4 mb-10 border-b border-cyan-200/30 pb-4">
     <h2 className="text-3xl font-bold text-white drop-shadow-sm">{t.projects.title}</h2>
