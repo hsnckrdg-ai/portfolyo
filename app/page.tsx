@@ -43,15 +43,23 @@ const translations = {
       ]
     },
     projects: {
-      title: "Projelerim",
-      items: [
-        { 
-          title: "Hava Kalitesi Tahminleyicisi", 
-          desc: "Geçmiş hava durumu ve kirlilik verilerini işleyerek gelecekteki hava kalitesini tahmin eden bir model tasarladım. Bu projede büyük veri setleri üzerinde veri temizleme, manipülasyon ve görselleştirme adımlarını uyguladım.", 
-          tags: ["Python", "Pandas", "Veri Analizi"], 
-          img: "https://picsum.photos/id/844/600/400"
-        },
-      ],
+  title: "Projelerim",
+  items: [
+    {
+      title: "Hava Kalitesi Tahminleyicisi",
+      desc: "Geçmiş hava durumu ve kirlilik verilerini işleyerek gelecekteki hava kalitesini tahmin eden bir model tasarladım...",
+      tags: ["Python", "Pandas", "Veri Analizi"],
+      img: "https://picsum.photos/id/844/600/400"
+    },
+    {
+      title: "Veri Bilimi Maaş Analizi",
+      desc: "Veri bilimi alanındaki güncel maaş trendlerini ve istatistiklerini inceleyen interaktif veri görselleştirme projesi.",
+      tags: ["Next.js", "Veri Görselleştirme", "React"],
+      img: "https://picsum.photos/id/845/600/400", 
+      link: "https://hsnckrdg-data-salaries.vercel.app/"
+    }
+  ]
+}
     },
     contact: { 
       title: "Benimle İletişime Geç", 
@@ -279,27 +287,44 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-white drop-shadow-sm">{t.projects.title}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {t.projects.items.map((project, idx) => (
-              <div key={idx} className="group overflow-hidden bg-black/40 backdrop-blur-md border border-cyan-200/30 rounded-2xl hover:border-cyan-300 hover:-translate-y-2 transition-all duration-300 shadow-xl hover:shadow-[0_10px_30px_rgba(34,211,238,0.2)]">
-                <div className="w-full h-48 overflow-hidden">
-                  <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100" />
-                </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-3 drop-shadow-md group-hover:text-cyan-200 transition-colors">{project.title}</h3>
-                  <p className="text-cyan-50 mb-6 drop-shadow-sm text-sm leading-relaxed">{project.desc}</p>
-                  <div className="flex gap-2">
-                    {project.tags.map((tag, tagIdx) => (
-                      <span key={tagIdx} className={`text-xs font-semibold py-1.5 px-3 rounded-full ${tagIdx === 0 ? 'bg-cyan-900/80 text-cyan-50 border border-cyan-400/50' : 'bg-black/50 text-cyan-50 border border-white/5'}`}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+   {t.projects.items.map((project, idx) => (
+  <div key={idx} className="group overflow-hidden bg-black/40 backdrop-blur-md border border-cyan-200/30 rounded-2xl hover:border-cyan-400/50 transition-colors duration-300">
+    <div className="w-full h-48 overflow-hidden">
+      <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+    </div>
+    <div className="p-8">
+      <h3 className="text-2xl font-bold text-white mb-3 drop-shadow-md group-hover:text-cyan-200 transition-colors">{project.title}</h3>
+      <p className="text-cyan-50 mb-6 drop-shadow-sm text-sm leading-relaxed">{project.desc}</p>
+      
+      {/* Etiketler (Tags) Alanı */}
+      <div className="flex flex-wrap gap-2">
+        {project.tags.map((tag, tagIdx) => (
+          <span key={tagIdx} className={`text-xs font-semibold py-1.5 px-3 rounded-full ${tagIdx === 0 ? 'bg-cyan-900/80 text-cyan-50 border border-cyan-500/50' : 'bg-black/50 text-cyan-200 border border-cyan-800/50'}`}>
+            {tag}
+          </span>
+        ))}
+      </div>
 
+      {/* Yeni Eklenen Link Butonu Alanı */}
+      {project.link && (
+        <div className="mt-8">
+          <a 
+            href={project.link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-5 py-2.5 bg-cyan-900/40 hover:bg-cyan-800 border border-cyan-700/50 hover:border-cyan-500 text-cyan-50 text-sm font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_15px_rgba(8,145,178,0.4)] group/btn"
+          >
+            Projeyi İncele
+            <svg className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      )}
+
+    </div>
+  </div>
+))}
         {/* 5. İletişim */}
         <section id="iletisim" className="max-w-4xl mx-auto px-6 py-24 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-md">{t.contact.title}</h2>
