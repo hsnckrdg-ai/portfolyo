@@ -91,17 +91,24 @@ const translations = {
         { title: "Tools", items: [{ name: "Git", icon: icons.git }, { name: "Jupyter", icon: icons.jupyter }, { name: "VS Code", icon: icons.vscode }] },
       ]
     },
-    projects: {
-      title: "My Projects",
-      items: [
-        { 
-          title: "Air Quality Predictor", 
-          desc: "I designed a model that predicts future air quality by processing historical weather and pollution data. In this project, I applied data cleaning, manipulation, and visualization steps on large datasets.", 
-          tags: ["Python", "Pandas"], 
-          img: "https://picsum.photos/id/844/600/400" 
-        },
-       
-      ]
+  projects: {
+  title: "My Projects",
+  items: [
+    {
+      title: "Air Quality Predictor",
+      desc: "I designed a model that predicts future air quality by processing historical weather and pollution data. In this project,",
+      tags: ["Python", "Pandas"],
+      img: "https://picsum.photos/id/844/600/400"
+    },
+    {
+      title: "Data Science Salary Analysis",
+      desc: "An interactive data visualization project examining current salary trends and statistics in the field of data science.",
+      tags: ["Next.js", "Data Visualization", "React"],
+      img: "https://picsum.photos/id/845/600/400",
+      link: "https://hsnckrdg-data-salaries.vercel.app/"
+    }
+  ]
+},
     },
     contact: { 
       title: "Contact Me", 
