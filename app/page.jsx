@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from 'react';
 
-// Logoların linklerini kalabalık yapmaması için buraya aldık
+// Logoların linkleri
 const icons = {
   python: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
   cpp: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
@@ -9,6 +9,7 @@ const icons = {
   pandas: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg",
   numpy: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg",
   matplotlib: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg",
+  excel: "https://img.icons8.com/color/48/microsoft-excel-2019--v1.png",
   hadoop: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/hadoop/hadoop-original.svg",
   mysql: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
   mongodb: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
@@ -17,13 +18,13 @@ const icons = {
   vscode: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
 };
 
-// DİL SÖZLÜĞÜ (Tüm yazıları buradan kolayca değiştirebilirsin)
+// DİL SÖZLÜĞÜ (Tüm yazıları buradan değiştirebilirsin)
 const translations = {
   tr: {
-    nav: { about: "Hakkımda", skills: "Yetenekler", projects: "Projeler", contact: "İletişim", toggle: "EN" },
+    nav: { about: "Hakkımda", education: "Eğitim", skills: "Yetenekler", projects: "Projeler", contact: "İletişim", toggle: "EN" },
     hero: { greeting: "Merhaba, Ben", name: "Hasan Can Karadağ", role: "Büyük Veri Analistliği Öğrencisi | Veri Analizi & Veri Bilimi" },
-    about: { 
-      title: "Hakkımda", 
+    about: {
+      title: "Hakkımda",
       desc: "Merhaba, ben Hasan Can Karadağ. Büyük Veri Analistliği bölümü öğrencisi olarak, verilerden anlamlı hikayeler çıkarmaya ve yazılım süreçlerine tutkuyla bağlıyım. Akademik eğitimim boyunca Python, SQL ve C++ ile sağlam bir algoritma temeli inşa ettim. Bireysel projelerimde Pandas ve Matplotlib kullanarak geniş veri setlerini analiz ediyor; MySQL, Hadoop ve MongoDB gibi teknolojilerle veritabanı yönetimi ve büyük veri işleme süreçleri üzerine pratikler yapıyorum. Versiyon kontrol sistemlerine (Git) ve modern geliştirme araçlarına aşinayım. Amacım, edindiğim teorik analitik becerileri gerçek dünya verileriyle buluşturabileceğim bir staj programında yer almak ve veriye dayalı stratejik çözümler üreten ekiplerde aktif görev almak."
     },
     education: {
@@ -33,47 +34,47 @@ const translations = {
       date: "2025 – Devam ediyor",
       desc: "Veri analizi, veritabanı teknolojileri, büyük veri, algoritmalar ve makine öğrenmesi üzerine eğitim alıyorum."
     },
-    skills: { 
+    skills: {
       title: "Yeteneklerim",
       groups: [
         { title: "Programlama", items: [{ name: "Python", icon: icons.python }, { name: "C++", icon: icons.cpp }, { name: "C", icon: icons.c }] },
-        { title: "Veri Analizi", items: [{ name: "Pandas", icon: icons.pandas }, { name: "NumPy", icon: icons.numpy }, { name: "Matplotlib", icon: icons.matplotlib }, { name: "Excel", icon:"https://img.icons8.com/color/48/microsoft-excel-2019--v1.png"}] },
+        { title: "Veri Analizi", items: [{ name: "Pandas", icon: icons.pandas }, { name: "NumPy", icon: icons.numpy }, { name: "Matplotlib", icon: icons.matplotlib }, { name: "Excel", icon: icons.excel }] },
         { title: "Veri & DB", items: [{ name: "Hadoop", icon: icons.hadoop }, { name: "MySQL", icon: icons.mysql }, { name: "MongoDB", icon: icons.mongodb }] },
         { title: "Araçlar", items: [{ name: "Git", icon: icons.git }, { name: "Jupyter", icon: icons.jupyter }, { name: "VS Code", icon: icons.vscode }] },
       ]
     },
     projects: {
-  title: "Projelerim",
-  items: [
-    {
-      title: "Hava Kalitesi Tahminleyicisi",
-      desc: "Geçmiş hava durumu ve kirlilik verilerini işleyerek gelecekteki hava kalitesini tahmin eden bir model tasarladım...",
-      tags: ["Python", "Pandas", "Veri Analizi"],
-      img: "https://picsum.photos/id/844/600/400"
+      title: "Projelerim",
+      viewProject: "Projeyi İncele",
+      items: [
+        {
+          title: "Hava Kalitesi Tahminleyicisi",
+          desc: "Geçmiş hava durumu ve kirlilik verilerini işleyerek gelecekteki hava kalitesini tahmin eden bir model tasarladım. Bu projede Python ve Pandas ile veri temizleme, analiz ve tahmin adımlarını uyguladım.",
+          tags: ["Python", "Pandas", "Veri Analizi"],
+          img: "https://picsum.photos/id/844/600/400"
+        },
+        {
+          title: "Veri Bilimi Maaş Analizi",
+          desc: "Veri bilimi alanındaki güncel maaş trendlerini ve istatistiklerini inceleyen interaktif veri görselleştirme projesi.",
+          tags: ["Next.js", "Veri Görselleştirme", "React"],
+          img: "https://picsum.photos/id/845/600/400",
+          link: "https://hsnckrdg-data-salaries.vercel.app/"
+        }
+      ]
     },
-    {
-      title: "Veri Bilimi Maaş Analizi",
-      desc: "Veri bilimi alanındaki güncel maaş trendlerini ve istatistiklerini inceleyen interaktif veri görselleştirme projesi.",
-      tags: ["Next.js", "Veri Görselleştirme", "React"],
-      img: "https://picsum.photos/id/845/600/400", 
-      link: "https://hsnckrdg-data-salaries.vercel.app/"
-    }
-  ]
-}
-    },
-    contact: { 
-      title: "Benimle İletişime Geç", 
-      desc: "Staj fırsatları, proje fikirleri veya sadece teknoloji üzerine sohbet etmek için bana her zaman ulaşabilirsin.", 
-      emailBtn: "E-posta Gönder", 
-      rights: "Tüm hakları saklıdır." 
+    contact: {
+      title: "Benimle İletişime Geç",
+      desc: "Staj fırsatları, proje fikirleri veya sadece teknoloji üzerine sohbet etmek için bana her zaman ulaşabilirsin.",
+      emailBtn: "E-posta Gönder",
+      rights: "Tüm hakları saklıdır."
     }
   },
   en: {
-    nav: { about: "About", skills: "Skills", projects: "Projects", contact: "Contact", toggle: "TR" },
+    nav: { about: "About", education: "Education", skills: "Skills", projects: "Projects", contact: "Contact", toggle: "TR" },
     hero: { greeting: "Hello, I'm", name: "Hasan Can Karadağ", role: "Big Data Analytics Student | Data Analysis & Data Science" },
-    about: { 
-      title: "About Me", 
-      desc: "Hello, I am Hasan Can Karadağ. As a Big Data Analytics student, I am passionate about extracting meaningful stories from data and engaging in software development processes. Throughout my academic education, I have built a solid algorithmic foundation using Python, SQL, and C++. In my personal projects, I analyze large datasets using Pandas and Matplotlib, and practice database management and big data processing with technologies like MySQL, Hadoop, and MongoDB. I am familiar with version control systems (Git) and modern development tools. My goal is to join an internship program where I can combine my theoretical analytical skills with real-world data and take an active role in teams producing data-driven strategic solutions. I am eager to learn, a team player, and passionate about creating innovative solutions." 
+    about: {
+      title: "About Me",
+      desc: "Hello, I am Hasan Can Karadağ. As a Big Data Analytics student, I am passionate about extracting meaningful stories from data and engaging in software development processes. Throughout my academic education, I have built a solid algorithmic foundation using Python, SQL, and C++. In my personal projects, I analyze large datasets using Pandas and Matplotlib, and practice database management and big data processing with technologies like MySQL, Hadoop, and MongoDB. I am familiar with version control systems (Git) and modern development tools. My goal is to join an internship program where I can combine my theoretical analytical skills with real-world data and take an active role in teams producing data-driven strategic solutions. I am eager to learn, a team player, and passionate about creating innovative solutions."
     },
     education: {
       title: "Education",
@@ -82,48 +83,48 @@ const translations = {
       date: "2025 – Present",
       desc: "I am studying data analysis, database technologies, big data, algorithms, and machine learning."
     },
-    skills: { 
+    skills: {
       title: "My Skills",
       groups: [
         { title: "Programming", items: [{ name: "Python", icon: icons.python }, { name: "C++", icon: icons.cpp }, { name: "C", icon: icons.c }] },
-        { title: "Data Analysis", items: [{ name: "Pandas", icon: icons.pandas }, { name: "NumPy", icon: icons.numpy }, { name: "Matplotlib", icon: icons.matplotlib }] },
+        { title: "Data Analysis", items: [{ name: "Pandas", icon: icons.pandas }, { name: "NumPy", icon: icons.numpy }, { name: "Matplotlib", icon: icons.matplotlib }, { name: "Excel", icon: icons.excel }] },
         { title: "Data & DB", items: [{ name: "Hadoop", icon: icons.hadoop }, { name: "MySQL", icon: icons.mysql }, { name: "MongoDB", icon: icons.mongodb }] },
         { title: "Tools", items: [{ name: "Git", icon: icons.git }, { name: "Jupyter", icon: icons.jupyter }, { name: "VS Code", icon: icons.vscode }] },
       ]
     },
-  projects: {
-  title: "My Projects",
-  items: [
-    {
-      title: "Air Quality Predictor",
-      desc: "I designed a model that predicts future air quality by processing historical weather and pollution data. In this project,",
-      tags: ["Python", "Pandas"],
-      img: "https://picsum.photos/id/844/600/400"
+    projects: {
+      title: "My Projects",
+      viewProject: "View Project",
+      items: [
+        {
+          title: "Air Quality Predictor",
+          desc: "I designed a model that predicts future air quality by processing historical weather and pollution data. In this project, I applied data cleaning, analysis, and prediction steps using Python and Pandas.",
+          tags: ["Python", "Pandas", "Data Analysis"],
+          img: "https://picsum.photos/id/844/600/400"
+        },
+        {
+          title: "Data Science Salary Analysis",
+          desc: "An interactive data visualization project examining current salary trends and statistics in the field of data science.",
+          tags: ["Next.js", "Data Visualization", "React"],
+          img: "https://picsum.photos/id/845/600/400",
+          link: "https://hsnckrdg-data-salaries.vercel.app/"
+        }
+      ]
     },
-    {
-      title: "Data Science Salary Analysis",
-      desc: "An interactive data visualization project examining current salary trends and statistics in the field of data science.",
-      tags: ["Next.js", "Data Visualization", "React"],
-      img: "https://picsum.photos/id/845/600/400",
-      link: "https://hsnckrdg-data-salaries.vercel.app/"
-    }
-  ]
-},
-    contact: { 
-      title: "Contact Me", 
-      desc: "You can always reach out to me for internship opportunities, project ideas, or just to chat about technology.", 
-      emailBtn: "Send Email", 
-      rights: "All rights reserved." 
-      
+    contact: {
+      title: "Contact Me",
+      desc: "You can always reach out to me for internship opportunities, project ideas, or just to chat about technology.",
+      emailBtn: "Send Email",
+      rights: "All rights reserved."
     }
   }
 };
 
 export default function Home() {
   const canvasRef = useRef(null);
-  // DİL STATE'İ (Varsayılan olarak 'tr' yani Türkçe başlar)
+  // Varsayılan dil Türkçe
   const [lang, setLang] = useState('tr');
-  const t = translations[lang]; // Seçili dilin sözlüğünü koda aktarır
+  const t = translations[lang];
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -205,13 +206,14 @@ export default function Home() {
             <div className="flex items-center gap-6">
               <div className="hidden md:flex gap-6 text-sm font-medium text-cyan-50">
                 <a href="#hakkimda" className="hover:text-cyan-300 transition-colors drop-shadow-sm">{t.nav.about}</a>
+                <a href="#egitim" className="hover:text-cyan-300 transition-colors drop-shadow-sm">{t.nav.education}</a>
                 <a href="#yetenekler" className="hover:text-cyan-300 transition-colors drop-shadow-sm">{t.nav.skills}</a>
                 <a href="#projeler" className="hover:text-cyan-300 transition-colors drop-shadow-sm">{t.nav.projects}</a>
                 <a href="#iletisim" className="hover:text-cyan-300 transition-colors drop-shadow-sm">{t.nav.contact}</a>
               </div>
-              
+
               {/* DİL DEĞİŞTİRME BUTONU */}
-              <button 
+              <button
                 onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}
                 className="flex items-center gap-1.5 bg-black/40 hover:bg-black/70 text-cyan-50 border border-cyan-500/40 px-3 py-1.5 rounded-full text-xs font-bold transition-all shadow-[0_0_10px_rgba(34,211,238,0.2)] hover:scale-105"
               >
@@ -223,7 +225,7 @@ export default function Home() {
             </div>
           </div>
         </nav>
-        
+
         {/* 1. Karşılama */}
         <header className="flex flex-col items-center justify-center min-h-[80vh] text-center px-4 pt-20">
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
@@ -243,17 +245,17 @@ export default function Home() {
             {t.about.desc}
           </p>
         </section>
-        {/* EĞİTİM BÖLÜMÜ */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+
+        {/* 3. Eğitim */}
+        <section id="egitim" className="max-w-4xl mx-auto px-6 py-10">
+          <div className="flex items-center gap-4 mb-8 border-b border-cyan-200/30 pb-4">
+            <svg className="w-7 h-7 text-cyan-100" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"></path>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
             </svg>
-            {t.education.title}
-          </h2>
-          <div className="bg-black/40 border border-cyan-500/20 p-6 rounded-2xl hover:border-cyan-500/50 transition-all shadow-[0_0_15px_rgba(34,211,238,0.05)]">
+            <h2 className="text-3xl font-bold text-white drop-shadow-sm">{t.education.title}</h2>
+          </div>
+          <div className="bg-black/40 backdrop-blur-md border border-cyan-500/20 p-6 rounded-2xl hover:border-cyan-500/50 transition-all shadow-[0_0_15px_rgba(34,211,238,0.05)]">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
               <h3 className="text-xl font-bold text-gray-100">{t.education.school}</h3>
               <span className="text-cyan-400 text-sm font-semibold bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full mt-2 md:mt-0">
@@ -261,24 +263,34 @@ export default function Home() {
               </span>
             </div>
             <h4 className="text-lg text-cyan-200 mb-3">{t.education.department}</h4>
-            <p className="text-gray-400 leading-relaxed">{t.education.desc}</p>
+            <p className="text-gray-300 leading-relaxed">{t.education.desc}</p>
           </div>
         </section>
 
-        {/* 3. Yetenekler */}
+        {/* 4. Yetenekler */}
         <section id="yetenekler" className="max-w-4xl mx-auto px-6 py-20">
           <div className="flex items-center gap-4 mb-10 border-b border-cyan-200/30 pb-4">
             <h2 className="text-3xl font-bold text-white drop-shadow-sm">{t.skills.title}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {t.skills.groups.map((group) => (
+            {t.skills.groups?.map((group) => (
               <div key={group.title} className="bg-black/40 backdrop-blur-md border border-cyan-200/30 p-8 rounded-2xl shadow-xl">
                 <h3 className="text-lg font-bold text-cyan-100 mb-6 drop-shadow-md">{group.title}</h3>
+
                 <div className="flex flex-wrap gap-4">
-                  {group.items.map((skill) => (
-                    <div key={skill.name} className="group/skill flex flex-col items-center justify-center bg-black/50 border border-cyan-500/30 w-20 h-20 rounded-2xl hover:-translate-y-2 hover:border-cyan-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all duration-300 cursor-pointer">
-                      <img src={skill.icon} alt={skill.name} className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300" />
-                      <span className="text-[10px] font-medium text-cyan-50 opacity-70 group-hover:opacity-100 transition-opacity">{skill.name}</span>
+                  {group.items?.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="group/skill flex flex-col items-center justify-center bg-black/50 border border-cyan-500/30 p-4 rounded-xl cursor-pointer"
+                    >
+                      <img
+                        src={skill.icon}
+                        alt={skill.name}
+                        className="w-8 h-8 mb-2 group-hover/skill:scale-110 transition-transform duration-300"
+                      />
+                      <span className="text-[10px] font-medium text-cyan-50 opacity-70 group-hover/skill:opacity-100 transition-opacity">
+                        {skill.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -287,58 +299,57 @@ export default function Home() {
           </div>
         </section>
 
- {/* 4. Projeler */}
-<section id="projeler" className="max-w-4xl mx-auto px-6 py-20">
-  <div className="flex items-center gap-4 mb-10 border-b border-cyan-200/30 pb-4">
-    <h2 className="text-3xl font-bold text-white drop-shadow-sm">{t.projects.title}</h2>
-  </div>
-  
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-    {t.projects.items.map((project, idx) => (
-      <div key={idx} className="group overflow-hidden bg-black/40 backdrop-blur-md border border-cyan-200/30 rounded-2xl hover:border-cyan-400/50 transition-colors duration-300">
-        <div className="w-full h-48 overflow-hidden">
-          <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-        </div>
-        <div className="p-8">
-          <h3 className="text-2xl font-bold text-white mb-3 drop-shadow-md group-hover:text-cyan-200 transition-colors">{project.title}</h3>
-          <p className="text-cyan-50 mb-6 drop-shadow-sm text-sm leading-relaxed">{project.desc}</p>
-          
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag, tagIdx) => (
-              <span key={tagIdx} className={`text-xs font-semibold py-1.5 px-3 rounded-full ${tagIdx === 0 ? 'bg-cyan-900/80 text-cyan-50 border border-cyan-500/50' : 'bg-black/50 text-cyan-200 border border-cyan-800/50'}`}>
-                {tag}
-              </span>
-            ))}
+        {/* 5. Projeler */}
+        <section id="projeler" className="max-w-4xl mx-auto px-6 py-20">
+          <div className="flex items-center gap-4 mb-10 border-b border-cyan-200/30 pb-4">
+            <h2 className="text-3xl font-bold text-white drop-shadow-sm">{t.projects.title}</h2>
           </div>
 
-          {/* Projeyi İncele Butonu */}
-          {project.link && (
-            <div className="mt-8">
-              <a 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-5 py-2.5 bg-cyan-900/40 hover:bg-cyan-800 border border-cyan-700/50 hover:border-cyan-500 text-cyan-50 text-sm font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_15px_rgba(8,145,178,0.4)] group/btn"
-              >
-                Projeyi İncele
-                <svg className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </a>
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {t.projects.items.map((project, idx) => (
+              <div key={idx} className="group overflow-hidden bg-black/40 backdrop-blur-md border border-cyan-200/30 rounded-2xl hover:border-cyan-400/50 transition-colors duration-300">
+                <div className="w-full h-48 overflow-hidden">
+                  <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-3 drop-shadow-md group-hover:text-cyan-200 transition-colors">{project.title}</h3>
+                  <p className="text-cyan-50 mb-6 drop-shadow-sm text-sm leading-relaxed">{project.desc}</p>
 
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, tagIdx) => (
+                      <span key={tagIdx} className={`text-xs font-semibold py-1.5 px-3 rounded-full ${tagIdx === 0 ? 'bg-cyan-900/80 text-cyan-50 border border-cyan-500/50' : 'bg-black/50 text-cyan-200 border border-cyan-800/50'}`}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
 
-        {/* 5. İletişim */}
+                  {/* Projeyi İncele Butonu */}
+                  {project.link && (
+                    <div className="mt-8">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-5 py-2.5 bg-cyan-900/40 hover:bg-cyan-800 border border-cyan-700/50 hover:border-cyan-500 text-cyan-50 text-sm font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_15px_rgba(8,145,178,0.4)] group/btn"
+                      >
+                        {t.projects.viewProject}
+                        <svg className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 6. İletişim */}
         <section id="iletisim" className="max-w-4xl mx-auto px-6 py-24 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-md">{t.contact.title}</h2>
           <p className="text-cyan-50 mb-10 text-lg drop-shadow-sm max-w-xl mx-auto">{t.contact.desc}</p>
-          
+
           <div className="flex flex-wrap justify-center items-center gap-6">
             <a href="https://github.com/hsnckrdg-ai" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 bg-black/50 backdrop-blur-md border border-cyan-500/30 py-3.5 px-8 rounded-full hover:bg-black/80 hover:border-cyan-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:-translate-y-1 transition-all duration-300">
               <svg className="w-6 h-6 text-white group-hover:text-cyan-300 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
